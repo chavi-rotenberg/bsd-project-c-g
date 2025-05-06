@@ -1,0 +1,66 @@
+/* input{
+    height: 10vh;
+    border: solid 2px;
+    width: 30%;
+    font-size: xx-large;
+}
+.inDiv{
+    margin-left: 30%;
+} */
+.inDiv {
+    /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+    background-color: #3b3a3d;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.logBut {
+    width: 90%;
+    padding: 12px 15px;
+    margin: 8px ;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.logBut:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #6366f1;
+}
+
+/* .login {
+    width: 100%;
+    padding: 12px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+} */
+.login {
+    width: 97%;
+    padding: 14px;
+    /* background: #3b82f6; */
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 1rem 10px ;
+    cursor: pointer;
+    height: 100%;
+}
+
+.login:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}

@@ -1,0 +1,142 @@
+.dashboard-container {
+    padding: 2rem 1rem;
+  }
+  
+  .dashboard-header {
+    margin-bottom: 2rem;
+  }
+  
+  .welcome-message {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .welcome-subtitle {
+    color: #757575;
+  }
+  
+  .stats-grid {
+    margin-bottom: 2rem;
+  }
+  
+  .recent-events-paper, .quick-actions-paper {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .paper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+  
+  .paper-title {
+    font-weight: 600;
+  }
+  
+  .add-button {
+    color: #FF7043;
+    border-color: #FF7043;
+  }
+  
+  .add-button:hover {
+    background-color: rgba(255, 112, 67, 0.1);
+    border-color: #E64A19;
+  }
+  
+  .events-list {
+    padding: 1rem 1.5rem;
+  }
+  
+  .event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  
+  .event-item:last-child {
+    border-bottom: none;
+  }
+  
+  .event-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  
+  .event-client {
+    color: #757575;
+  }
+  
+  .event-date {
+    color: #757575;
+    font-weight: 500;
+  }
+  
+  .no-events {
+    padding: 2rem;
+    text-align: center;
+    color: #757575;
+  }
+  
+  .quick-actions-list {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .quick-action-button {
+    padding: 0.75rem;
+    text-transform: none;
+    font-weight: 500;
+  }
+  
+  .quick-action-button:nth-child(1) {
+    background-color: #FF7043;
+  }
+  
+  .quick-action-button:nth-child(2) {
+    background-color: #8D6E63;
+  }
+  
+  .quick-action-button:nth-child(3) {
+    background-color: #29B6F6;
+  }
+  
+  .quick-action-button:nth-child(4) {
+    background-color: #66BB6A;
+  }
+  
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 1rem;
+  }
+  
+  .loading-text {
+    color: #757575;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .dashboard-container {
+      padding: 1rem 0.5rem;
+    }
+    
+    .paper-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .add-button {
+      align-self: flex-end;
+    }
+  }
+  

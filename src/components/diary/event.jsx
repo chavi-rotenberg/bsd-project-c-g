@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 // import './style.css'
-import { addEventThunk } from '../../store/slices/addEventThunk';
+import { addEventThunk } from '../../store/slices/events/addEventThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { editEventThunk } from '../../store/slices/editEventThunk';
-import { findEventThunkById } from '../../store/slices/findEvenThunkById';
+import { editEventThunk } from '../../store/slices/events/editEventThunk';
+import { findEventThunkById } from '../../store/slices/events/findEvenThunkById';
 // import Input from '@mui/joy/Input';
 
 export const Event = () => {
@@ -75,7 +75,7 @@ export const Event = () => {
 
     const cancele = () => {
         refDialog.current.close();
-        navigate(`/home/${id}/calandar`)
+        navigate(`/home/${id}/month`)
     }
 
     const saveEvent = async () => {
