@@ -120,6 +120,8 @@ export const Routing = () => {
   return (
     <Routes>
       {/* Public routes */}
+      <Route path={"activites"} element={<Activities />} />
+
       <Route path="/" element={<About />} />
       <Route path="/login" element={<Start />} >
         <Route path="logon" element={<Logon />} />
@@ -153,7 +155,7 @@ export const Routing = () => {
         <Route path="myOrders" element={<MyOrders />}>
           <Route path="editOrder/:orderId" element={<AddEditOrder />} />
         </Route>
-        <Route path={"activites"} element={<Activities />} />
+        {/* <Route path={"activites"} element={<Activities />} /> */}
       </Route>
       
       {/* Order routes */}
