@@ -1,0 +1,109 @@
+.profile-container {
+    padding: 2rem 1rem;
+  }
+  
+  .profile-paper {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    position: relative;
+  }
+  
+  .back-button {
+    margin-left: 1rem;
+  }
+  
+  .profile-title {
+    flex-grow: 1;
+    font-weight: 600;
+  }
+  
+  .edit-button, .save-button, .cancel-button {
+    color: #757575;
+  }
+  
+  .edit-button:hover {
+    color: #FF7043;
+    background-color: rgba(255, 112, 67, 0.1);
+  }
+  
+  .save-button:hover {
+    color: #66BB6A;
+    background-color: rgba(102, 187, 106, 0.1);
+  }
+  
+  .cancel-button:hover {
+    color: #EF5350;
+    background-color: rgba(239, 83, 80, 0.1);
+  }
+  
+  .edit-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .profile-content {
+    padding: 2rem;
+  }
+  
+  .profile-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+    background-color: #FF7043;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .profile-name {
+    font-weight: 600;
+  }
+  
+  .profile-form {
+    margin-top: 1rem;
+  }
+  
+  .social-media-title {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .profile-container {
+      padding: 1rem 0.5rem;
+    }
+    
+    .profile-header {
+      padding: 1rem;
+    }
+    
+    .profile-content {
+      padding: 1rem;
+    }
+    
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      font-size: 2.5rem;
+    }
+    
+    .profile-avatar-section {
+      margin-bottom: 1.5rem;
+    }
+  }
+  

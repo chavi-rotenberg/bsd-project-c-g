@@ -1,10 +1,15 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { ordersFetchThunk } from '../../store/slices/ordersFetch';
-import { deleteOrderThunk } from '../../store/slices/deleteOrderThunk'
+import { ordersFetchThunk } from '../../store/slices/orders/ordersFetch';
+import { deleteOrderThunk } from '../../store/slices/orders/deleteOrderThunk'
 import './order.css'
 import { Outlet, useNavigate } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+// import {EditDocumentIcon} from '@mui/icons-material/EditDocument';
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
+
 // import { findCustomerThunk } from '../../store/slices/findCustomerThunk';
 
 export const Orders = () => {
@@ -57,13 +62,15 @@ export const Orders = () => {
             <thead>
                 <tr>
                     <th>קוד הזמנה</th>
-                    <th>שם לקוח</th>
-                    <th>שם מתווך</th>
+                    <th>שם לקוח/ה</th>
+                    <th>שם מתווך/ת</th>
                     <th>כמות משתתפים</th>
                     <th>שם פעילות</th>
                     <th>תאריך</th>
                     <th>שעה</th>
-                    <th>תשלום</th>
+                    <th>סה"כ תשלום</th>
+                    <th></th>
+                    <th></th>
                 </tr>   </thead>
             <tbody>
                 {orders.length > 0 && orders.map(o => { //getDitals(o);
@@ -81,18 +88,28 @@ export const Orders = () => {
                         <td>{o.date}</td>
                         <td>{o.activeHour}</td>
                         <td>{o.payment}</td>
+                        <td>
+                            <IconButton onClick={() => deleteOrder(o.orderId)} aria-label="delete" size='large' >
+                                <DeleteForeverOutlinedIcon htmlColor=' #3b3a3d' />
+                            </IconButton>
+                        </td>
+                        <td>
+                            <IconButton onClick={() => navigate(`editOrder/${o.orderId}`)} aria-label="edit" size='large' >
+                                <EditNoteOutlinedIcon htmlColor=' #3b3a3d' />
+                            </IconButton>
+                        </td>
                     </tr>
                 })}
             </tbody>
         </table>
-        <button onClick={() => navigate('newOrder')}>add</button>
-
+        <button className='button' onClick={() => navigate('newOrder')}>add</button>
+{/* 
         {delt && <button onClick={() => deleteOrder(ordId)}>delete</button>}
-        {edit && <button onClick={() => navigate(`editOrder/${ordId}`)}>edit</button>}
-       
+        {edit && <button onClick={() => navigate(`editOrder/${ordId}`)}>edit</button>} */}
+
         <div>
             <Outlet></Outlet>
         </div>
     </div>
 
-            }
+}

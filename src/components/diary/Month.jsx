@@ -4,26 +4,34 @@ import { DayView } from "../DayView/dayView";
 import { Week } from "./Week";
 import { useEffect, useState } from 'react'
 import './calendar.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 // import { useSelector, useDispatch } from "react-redux";
 // import { eventFetchThunk } from '../../store/slices/eventFetchThunk';
 
 import { Button } from '@mui/material';
+import StarsIcon from '@mui/icons-material/Stars';
+import IconButton from '@mui/material/IconButton';
 import TimerSharpIcon from '@mui/icons-material/TimerSharp';
+import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
 import AddPhotoAlternateSharpIcon from '@mui/icons-material/AddPhotoAlternateSharp';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { useDispatch, useSelector } from "react-redux";
-import { eventFetchThunk } from "../../store/slices/eventFetchThunk";
+import { eventFetchThunk } from "../../store/slices/events/eventFetchThunk";
+import { customersFetchThunkById } from "../../store/slices/customers/customerFetchThunkById";
+import { ordersFetchThunk } from "../../store/slices/orders/ordersFetch";
 
 export const Month = ({ }) => {
-
+    debugger
     const parms = useParams();
     const navigate = useNavigate();
     const [currentDate, setCurrentDate] = useState(new Date());
-    const [myView, setMyView] = useState("תצוגה חודשית");
+    const [myView, setMyView] = useState("תצוגה חודשית")
     const [notview, setNotView] = useState("תצוגה שבועית")
+    const [dayView, setDayView] = useState(0)
+    const myOrders = useSelector(state => state.customer.MyOrders);
+    const orders = useSelector(state => state.order.orders)
     // 'month' or 'week'
     const [dayDate, setDayDate] = useState(new Date(2025, 2, 24))
     //const patients = useSelector(state => state.PatientSlice.patientsList)
@@ -31,10 +39,16 @@ export const Month = ({ }) => {
     const dispatch = useDispatch();
     // const username = useSelector(state => state.user.userName)
     const events = useSelector(state => state.events.events);
-    
+
     useEffect(() => {
         if (events?.length == 0) dispatch(eventFetchThunk())
     }, [events])
+    useEffect(() => {
+        if (myOrders?.length == 0) dispatch(customersFetchThunkById({ id: parseInt(parms.id) }))
+    }, [myOrders])
+    useEffect(() => {
+        if (orders?.length == 0) dispatch(ordersFetchThunk())
+    }, [orders])
     const goToNextMonth = () => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
     };
@@ -44,7 +58,7 @@ export const Month = ({ }) => {
     };
     const newEvent = () => {
 
-        navigate(`event`)
+        navigate(`/home/${parms.id}/event`)
     };
     const newOrder = () => {
         navigate(`/newOrder`)
@@ -70,6 +84,26 @@ export const Month = ({ }) => {
         // setCount(0)
         // myDate()
         setCurrentDate(new Date());
+    }
+    const openDayWiew = (day) => {
+        // setDayView(day)
+        // if(dayView===day){
+        //     navigate(`day/${day.getDate()}/${day.getMonth()+1}/${day.getFullYear()}`)
+        // }
+        navigate(`/home/${parms.id}/day/${day.getDate()}/${day.getMonth() + 1}/${day.getFullYear()}`)
+
+    }
+
+    const splitToDate = (d) => {
+        const s = d.split("/");
+        console.log(s);
+        if (parseInt(s[0]) < 10)
+            s[0] = "0" + s[0];
+        if (parseInt(s[1]) < 10)
+            s[1] = "0" + s[1];
+        d = s[2] + "-" + s[0] + "-" + s[1];
+        console.log(d);
+        return d;
     }
     const renderMonthDays = () => {
 
@@ -128,14 +162,65 @@ export const Month = ({ }) => {
         // Add cells for each day of the month
         const today = new Date();
         for (let day = 1; day <= daysInMonth; day++) {
+            debugger
             const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
             const isToday =
                 date.getDate() === today.getDate() &&
                 date.getMonth() === today.getMonth() &&
                 date.getFullYear() === today.getFullYear();
-
+            debugger
+            const eventToday = []
+            const ordersToday = []
+            const otherOrders=[]
+            events.forEach(ev => {
+                ev.date === splitToDate(date.toLocaleDateString()) &&
+                eventToday.push(
+                    <div key={ev.id} style={{
+                        border: "solid 2px black"
+                    }}>
+                        {ev.time}
+                        <br />
+                        {ev.time}
+                    </div>
+                )
+            })
+            myOrders.forEach(o => {
+                o.date === splitToDate(date.toLocaleDateString()) &&
+                ordersToday.push(
+                    <div key={o.orderId} style={{
+                        border: "solid 2px black"
+                    }}>
+                        {o.activeHour}
+                        <br />
+                        {o.activityName}
+                        <br />
+                        {o.customerName}
+                          {/* <IconButton  aria-label="edit" size='large' >
+                        <StarsIcon htmlColor=' #3b3a3d' />
+                    </IconButton> */}
+                    </div>
+                )
+            })
+            orders.forEach(o => {
+                (o.date === splitToDate(date.toLocaleDateString()) && o.customerId!==parseInt(parms.id) )&&
+                otherOrders.push(
+                    <div key={o.orderId} style={{
+                        border: "solid 2px black"
+                    }}>
+                        {o.activeHour}
+                        <br />
+                        {o.activityName}
+                        <br />
+                        {o.customerName}
+                          {/* <IconButton  aria-label="edit" size='large' >
+                        <StarsIcon htmlColor=' #3b3a3d' />
+                    </IconButton> */}
+                    </div>
+                )
+            })
             calendarCells.push(
-                <div onClick={() => { setDayDate(date); setMonthName(monthNames[date.getMonth()]) }}
+
+                <div onClick={() => { setDayDate(date); setMonthName(monthNames[date.getMonth()]); openDayWiew(date); }}
                     key={`day-${day}`} style={{
                         border: "1px solid #ccc",
                         padding: "10px",
@@ -146,6 +231,19 @@ export const Month = ({ }) => {
                         backgroundColor: isToday ? '#764ba2' : 'white'
                     }}>
                     {day}
+                    <></>{( ordersToday?.length >0) &&
+                    <IconButton  aria-label="edit" size='small' >
+                        <StarsIcon htmlColor={isToday?'white':'goldenrod'} />
+                    </IconButton>}
+                    {(eventToday?.length>0 || otherOrders?.length >0) &&
+                    <IconButton  aria-label="edit" size='small' >
+                        <PlaylistAddCheckCircleIcon htmlColor={isToday?'white':'silver'} />
+                    </IconButton>}
+                    {/* {eventToday}
+                    {ordersToday} */}
+                    {/* {alert(day)} */}
+
+
                     <div>
 
                     </div>
@@ -210,7 +308,7 @@ export const Month = ({ }) => {
                 gap: "5px"
             }}>
 
-               {calendarCells}
+                {calendarCells}
             </div>
         );
     };
@@ -221,48 +319,50 @@ export const Month = ({ }) => {
     ];
 
     return (<>
-    
-        
-            {myView === 'תצוגה חודשית' && <>
-                <Button variant="contained" className='button' onClick={() => {
-                    changeView(myView); //navigate(`home/${param.id}/calandar`) 
-                }} endIcon={<DateRangeIcon />}>{notview}
-                </Button>
-                <Button variant="contained" onClick={() => newEvent()} className='button cal-button' endIcon={<AddPhotoAlternateSharpIcon />}>
-                    ארוע חדש
-                </Button>
 
-                <Button variant="contained" onClick={() => goToPrevMonth()} className='button cal-button' endIcon={<ArrowBackIosIcon />}>
 
-                </Button>
-                <Button variant="contained" onClick={() => goToNextMonth()} className='button cal-button' endIcon={<ArrowForwardIosIcon />}>
+        {myView === 'תצוגה חודשית' && <>
+            <Button variant="contained" className='button' onClick={() => {
+                changeView(myView); //navigate(`home/${param.id}/calandar`) 
+            }} endIcon={<DateRangeIcon />}>{notview}
+            </Button>
+            <Button variant="contained" onClick={() => newEvent()} className='button cal-button' endIcon={<AddPhotoAlternateSharpIcon />}>
+                ארוע חדש
+            </Button>
 
-                </Button>
+            <Button variant="contained" onClick={() => goToPrevMonth()} className='button cal-button' endIcon={<ArrowBackIosIcon />}>
 
-                <Button variant="contained" onClick={() => toDay()} className='button cal-button' endIcon={<TimerSharpIcon />}>
-                    לתאריך הנוכחי
-                </Button>
-                <div style={{
-            padding: "20px",
-            border: "3px solid #764ba2",
-            height: "55vh",
-            margin: "5% 20%",
-            width: "60%",
-            borderRadius: "10px",
-            // boxShadow: "0 2px 10px rgba(0,0,0,0.1)"
-        }}>
-            <h2 style={{ textAlign: 'center' }}>
-                {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
-            </h2>
+            </Button>
+            <Button variant="contained" onClick={() => goToNextMonth()} className='button cal-button' endIcon={<ArrowForwardIosIcon />}>
+
+            </Button>
+
+            <Button variant="contained" onClick={() => toDay()} className='button cal-button' endIcon={<TimerSharpIcon />}>
+                לתאריך הנוכחי
+            </Button>
+            <div style={{
+                padding: "20px",
+                border: "3px solid #764ba2",
+                height: "55vh",
+                margin: "5% 20%",
+                width: "60%",
+                borderRadius: "10px",
+                // boxShadow: "0 2px 10px rgba(0,0,0,0.1)"
+            }}>
+                <h2 style={{ textAlign: 'center' }}>
+                    {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+                </h2>
 
                 {renderMonthDays()}
-               
-        </div></>
+
+            </div></>
         }
-         {myView === "תצוגה שבועית" &&
-         <Week />}
-         </>
-  );
+        {myView === "תצוגה שבועית" &&
+            navigate(`/home/${parms.id}/week`)
+        }
+        <div><Outlet></Outlet></div>
+    </>
+    );
 };
 
 

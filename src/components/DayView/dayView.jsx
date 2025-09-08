@@ -3,20 +3,28 @@ import Face3OutlinedIcon from '@mui/icons-material/Face3Outlined';
 //import { useSelector } from 'react-redux'
 import './dayView.css'
 import { useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 //import { getAllStartAQueuesThunk } from '../../redux/slices/queueSlice/getAllStartAvialableQueue'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export const DayView = (props) => {
-    const { date, monthName  , setMonthName} = props
+export const DayView = () => {
+    // const { date, monthName  , setMonthName} = props
     const daysAtHebrew = ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'שבת']
     // const aQ = useSelector(state => state.QueuesSlice.listStartAQueue)
     //const fixedQueues = useSelector(state => state.QueuesSlice.listOfQueues)
     //const allPatients = useSelector(state => state.PatientSlice.patientsList)
+    const parms=useParams()
+    console.log(parms.day+"//"+parms.month+"//"+parms.year);
+    const [date,setDate]=useState(new Date(parms.year,parms.month-1,parms.day))
     const dispatch = useDispatch()
     const [aqToday, setAqToday] = useState([])
     const [fqToday, setFqToday] = useState([])
     const navi = useNavigate()
+    const refDialog=useRef()
+    const monthNames = [
+        'ינואר', 'פבואר', 'מרץ', 'אפריל', 'מאי', 'יוני',
+        'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'
+    ];
     let qType = 'o'
     // useEffect(() => {
     //     // setAqToday(aQ.filter(aq => new Date(aq.queue.date).toLocaleDateString() == date.toLocaleDateString()))
@@ -24,13 +32,19 @@ export const DayView = (props) => {
     // }, [aQ, date])
 
     useEffect(() => {
-
+        refDialog.current.showModal();
+        // alert(date.toLocaleDateString())
         debugger
        // dispatch(getAllStartAQueuesThunk())
     }, [])
 
 //console.log(allPatients , 'allllllllllll');
-
+  const  back=()=>{
+    debugger
+    // alert(parms.id)
+    refDialog.current.close();
+    navi(`/home/${parms.id}/month`)
+  }
     const hours = [
         { hour: 0, hourString: "00:00" },
         { hour: 1, hourString: "01:00" },
@@ -63,9 +77,9 @@ export const DayView = (props) => {
         navi('/addQueue/' + q1 + "/" + qType)
     }
 
-    return <dialog open className='dayView'>
+    return <dialog  className='dayView' ref={refDialog}>
 
-        <h1 className='h'>{monthName} {date.getFullYear()}</h1>
+        <h1 className='h'>{monthNames[date.getMonth()]} {date.getFullYear()}</h1>
 
         <section className='dayHead'>
             <h2 className='dayNum'>יום {daysAtHebrew[(date.getDay())]}</h2>
@@ -106,6 +120,7 @@ export const DayView = (props) => {
             })}
 
         </header>
-        <button onClick={()=> setMonthName("")}>close</button>
+        <button onClick={()=> {//setMonthName("");
+        back()}}>close</button>
     </dialog>
 }

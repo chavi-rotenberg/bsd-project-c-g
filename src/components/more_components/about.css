@@ -1,0 +1,619 @@
+/* === כללי === */
+.about-page {
+  position: relative;
+  overflow-x: hidden;
+  direction: rtl;
+  font-family: 'Rubik', 'Heebo', sans-serif;
+  color: #333;
+}
+
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.animated-bg:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%),
+              radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: -1;
+}
+
+/* === אפשרויות לוגו === */
+
+/* === לוגואים חדשים בעברית === */
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Assistant:wght@200;300;400;500;600;700;800&family=Amatic+SC:wght@400;700&family=Karantina:wght@300;400;700&family=Open+Sans+Hebrew:wght@300;400;500;700;800&display=swap');
+
+/* אפשרות 1: "מנהלים" - פשוט ואלגנטי */
+.new-hebrew-logo-1 {
+  display: inline-block;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.new-logo-text {
+  font-family: 'Assistant', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* אפשרות 2: "ארגון" - מודרני ונקי */
+.new-hebrew-logo-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-logo-main {
+  font-family: 'Open Sans Hebrew', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.new-logo-line {
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, #ffcc80 0%, #ff9800 100%);
+  border-radius: 2px;
+  margin-top: 5px;
+}
+
+/* אפשרות 3: "תכנון" - עם אפקט מיוחד */
+.new-hebrew-logo-3 {
+  display: inline-block;
+}
+
+.new-logo-text-3d {
+  font-family: 'Alef', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 
+    0px 1px 0px #ffcc80,
+    0px 2px 0px #ffb74d,
+    0px 3px 0px #ffa726,
+    0px 4px 0px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+}
+
+/* אפשרות 4: "יומן" - עם אייקון מתאים */
+.new-hebrew-logo-4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendar-icon {
+  color: #ffcc80;
+  font-size: 2rem !important;
+}
+
+.new-logo-word {
+  font-family: 'Assistant', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* אפשרות 5: "הצלחה" - עם עיצוב מעוגל */
+.new-hebrew-logo-5 {
+  display: inline-block;
+}
+
+.new-logo-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.new-logo-text-circle {
+  font-family: 'Amatic SC', cursive;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* התאמה לפוטר */
+.footer-logo-style .new-hebrew-logo-1 {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.footer-logo-style .new-logo-text,
+.footer-logo-style .new-logo-main,
+.footer-logo-style .new-logo-text-3d,
+.footer-logo-style .new-logo-word,
+.footer-logo-style .new-logo-text-circle {
+  color: white;
+}
+
+.footer-logo-style .calendar-icon {
+  color: #ffcc80;
+}
+
+.footer-logo-style .new-logo-line {
+  background: linear-gradient(90deg, #ffcc80 0%, #ff9800 100%);
+}
+
+.footer-logo-style .new-logo-circle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* התאמה לפוטר */
+.footer-logo-style .logo-option-1 .logo-icon,
+.footer-logo-style .logo-option-1 .logo-text-accent,
+.footer-logo-style .logo-option-2 .logo-secondary,
+.footer-logo-style .logo-option-3 .logo-part-2,
+.footer-logo-style .logo-option-4 .logo-first,
+.footer-logo-style .logo-option-5 .logo-shadow-text.highlight {
+  color: #ffcc80;
+}
+
+.footer-logo-style .logo-option-1 .logo-text-main,
+.footer-logo-style .logo-option-2 .logo-primary,
+.footer-logo-style .logo-option-3 .logo-part-1,
+.footer-logo-style .logo-option-4 .logo-rest,
+.footer-logo-style .logo-option-5 .logo-shadow-text:not(.highlight) {
+  color: white;
+}
+
+.footer-logo-style .logo-option-2 .logo-shape {
+  background: linear-gradient(135deg, #ffcc80 0%, #ff9800 100%);
+}
+
+.footer-logo-style .logo-option-3 .logo-underline {
+  background: linear-gradient(90deg, white 0%, #ffcc80 100%);
+}
+
+.footer-logo-style .logo-option-4 .logo-border {
+  border-color: white;
+}
+
+/* === כותרות === */
+.section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 3px;
+}
+
+.section-description {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* === הדר === */
+.about-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-header:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255, 255, 255, 0.1)" fill-opacity="1" d="M0,192L48,176C96,160,192,128,288,133.3C384,139,480,181,576,186.7C672,192,768,160,864,149.3C960,139,1056,149,1152,154.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+  background-size: cover;
+  background-position: bottom;
+  opacity: 0.6;
+}
+
+.about-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.back-button {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.logo-placeholder {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.about-hero {
+  text-align: center;
+  padding: 3rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.about-title {
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 3rem;
+}
+
+.about-subtitle {
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+}
+
+.about-cta-button {
+  background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%) !important;
+  border-radius: 30px !important;
+  padding: 12px 30px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.about-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* === תוכן === */
+.about-content {
+  margin-top: -3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.about-section {
+  padding: 4rem 0;
+}
+
+/* === תכונות === */
+.features-grid {
+  margin-top: 2rem;
+}
+
+.feature-card {
+  height: 100%;
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.feature-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  z-index: 2;
+}
+
+.feature-icon {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  color: #6a11cb;
+}
+
+.feature-title {
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.feature-description {
+  text-align: center;
+  color: #666;
+}
+
+/* === למה לבחור בנו === */
+.why-us-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.why-us-content {
+  padding: 2rem;
+}
+
+.why-us-title {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.why-us-description {
+  margin-bottom: 2rem;
+  color: #666;
+  line-height: 1.7;
+}
+
+.why-us-points {
+  margin-top: 2rem;
+}
+
+.why-us-point {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.check-icon {
+  color: #6a11cb;
+  font-weight: bold;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.why-us-image-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-us-image {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.why-us-image:hover {
+  transform: scale(1.03);
+}
+
+/* === המלצות === */
+.testimonials-section {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  margin: 4rem 0;
+}
+
+.testimonial-slider {
+  margin-top: 3rem;
+}
+
+.testimonial-card {
+  height: 100%;
+  padding: 2rem;
+  border-radius: 12px !important;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+}
+
+.quote-icon {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 4rem;
+  color: rgba(106, 17, 203, 0.1);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.testimonial-text {
+  margin-bottom: 2rem;
+  color: #555;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-author {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.author-title {
+  color: #6c757d;
+}
+
+/* === קריאה לפעולה === */
+.cta-section {
+  margin: 4rem 0;
+}
+
+.cta-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 12px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.cta-title {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.cta-description {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+.cta-button {
+  background: white !important;
+  color: #764ba2 !important;
+  border-radius: 30px !important;
+  padding: 12px 30px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+}
+
+/* === פוטר === */
+.about-footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 4rem 0 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-tagline {
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.footer-cta {
+  display: flex;
+  align-items: center;
+}
+
+.cta-text {
+  margin-left: 1rem;
+}
+
+.footer-divider {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  margin: 2rem 0 !important;
+}
+
+.copyright-text {
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* === רספונסיביות === */
+@media (max-width: 960px) {
+  .about-title {
+    font-size: 2.5rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-logo {
+    margin-bottom: 2rem;
+  }
+  
+  .footer-cta {
+    flex-direction: column;
+  }
+  
+  .cta-text {
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-title {
+    font-size: 2rem;
+  }
+  
+  .about-subtitle {
+    font-size: 1rem;
+  }
+  
+  .about-section {
+    padding: 3rem 0;
+  }
+  
+  .why-us-content {
+    padding: 1rem;
+  }
+  
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+  
+  .cta-container {
+    padding: 3rem 1.5rem;
+  }
+}
